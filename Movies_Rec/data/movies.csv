@@ -1,0 +1,11 @@
+movieId,title,genres
+1,The Matrix (1999),Action|Sci-Fi
+2,Inception (2010),Action|Sci-Fi|Thriller
+3,Interstellar (2014),Adventure|Drama|Sci-Fi
+4,The Dark Knight (2008),Action|Crime|Drama
+5,Toy Story (1995),Animation|Adventure|Comedy
+6,Finding Nemo (2003),Animation|Adventure|Comedy
+7,The Godfather (1972),Crime|Drama
+8,Pulp Fiction (1994),Crime|Drama
+9,Avengers: Endgame (2019),Action|Adventure|Sci-Fi
+10,Spirited Away (2001),Animation|Adventure|Fantasy

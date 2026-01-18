@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<section class="video-hero">
+  <video autoplay muted loop playsinline>
+    <source src="{{ url_for('static', filename='videos/intro.mp4') }}" type="video/mp4">
+  </video>
+
+  <div class="video-overlay">
+    <h1>Movies</h1>
+    <p>Personalized movie recommendations just for you</p>
+
+    <a href="#main-content" class="hero-button">
+      Explore
+    </a>
+  </div>
+</section>
+
+<div id="main-content"></div>
+
+<section class="card">
+  <h2>Get recommendations</h2>
+
+  <form action="{{ url_for('recommend') }}" method="post" class="grid">
+    <label>
+      User
+      <select name="user_id" required>
+        {% for u in users %}
+          <option value="{{ u }}">{{ u }}</option>
+        {% endfor %}
+      </select>
+    </label>
+
+    <label>
+      Results
+      <input name="topn" type="number" value="8" min="1" max="50">
+    </label>
+
+    <label>
+      Engine
+      <select name="engine">
+        <option value="classic">Collaborative</option>
+        <option value="nmf">NMF</option>
+      </select>
+    </label>
+
+    <button type="submit">Recommend</button>
+  </form>
+</section>
+
+<section class="card">
+  <h2>Find similar movies</h2>
+
+  <form action="{{ url_for('similar') }}" method="post" class="grid">
+    <label>
+      Movie
+      <select name="movie_id" required>
+        {% for m in movies %}
+          <option value="{{ m.movieId }}">{{ m.title }}</option>
+        {% endfor %}
+      </select>
+    </label>
+
+    <label>
+      Results
+      <input name="topn" type="number" value="6" min="1" max="50">
+    </label>
+
+    <div></div>
+
+    <button type="submit">Find similar</button>
+  </form>
+
+</section>
+
+
+  <div class="brand-mark">
+    Watch Me
+  </div>
+
+{% endblock %}

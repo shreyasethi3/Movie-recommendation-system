@@ -1,0 +1,493 @@
+:root {
+  --bg: #f8f7f5;          /* warm oat */
+  --card: #ffffff;       /* porcelain */
+  --text: #2e2925;       /* espresso brown */
+  --accent: #c9beb2;     /* skin-stone */
+  --accent-strong: #b8ada1;
+  --muted: #8f877f;      /* warm grey */
+}
+
+/* Reset */
+* {
+  box-sizing: border-box;
+}
+
+/* Base */
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 0.96rem;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Header */
+header {
+  padding: 1.6rem 1rem 0.6rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(0,0,0,0.035);
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.75),
+    rgba(255,255,255,0)
+  );
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: 0.25px;
+  font-family: "Inter Tight", Inter, sans-serif;
+
+}
+
+/* Layout */
+main {
+  max-width: 980px;
+  margin: 0 auto;              /* 👈 removes top gap */
+  padding: 0.7rem 1rem 3.2rem; /* 👈 controlled spacing */
+}
+
+
+/* Section titles */
+h2 {
+  font-size: 1.06rem;
+  font-weight: 500;
+  margin: 0 0 1rem 0;
+}
+
+/* Cards */
+.card {
+  background: var(--card);
+  border-radius: 18px;
+  padding: 1.5rem;
+  margin: 1.8rem 0;
+  border: 1px solid rgba(0,0,0,0.045);
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.035),
+    inset 0 1px 0 rgba(255,255,255,0.6);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Card hover (interaction 1) */
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 18px 38px rgba(0,0,0,0.06),
+    inset 0 1px 0 rgba(255,255,255,0.6);
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 150px auto;
+  gap: 1.05rem;
+  align-items: end;
+}
+
+/* Labels */
+label {
+  display: grid;
+  gap: 0.3rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* Inputs */
+select,
+input {
+  background: #ffffff;
+  color: var(--text);
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 13px;
+  padding: 0.7rem 0.9rem;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Input focus glow (interaction 2) */
+select:focus,
+input:focus {
+  border-color: var(--accent-strong);
+  box-shadow: 0 0 0 3px rgba(201, 190, 178, 0.35);
+}
+
+/* Button */
+button {
+  background: linear-gradient(
+    180deg,
+    #d3c8bd,
+    var(--accent)
+  );
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 13px;
+  padding: 0.7rem 1.3rem;
+  cursor: pointer;
+}
+
+/* Lists */
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+/* Movie items */
+.movie {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border-radius: 15px;
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,0.045);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.03);
+}
+
+/* Movie text */
+.title {
+  font-size: 0.96rem;
+  font-weight: 500;
+  letter-spacing: 0.15px;
+}
+
+.genres {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 0.35rem;
+}
+
+/* Flash messages */
+.flash {
+  background: linear-gradient(
+    180deg,
+    var(--accent),
+    var(--accent-strong)
+  );
+  color: #ffffff;
+  padding: 0.75rem 1.1rem;
+  border-radius: 15px;
+  margin-bottom: 1.2rem;
+  font-size: 0.85rem;
+}
+
+/* Links */
+.back {
+  display: inline-block;
+  margin-top: 1.1rem;
+  text-decoration: none;
+  color: var(--accent-strong);
+  font-size: 0.85rem;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1.4rem;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+/* ===============================
+   CINEMATIC RECOMMENDATION PAGE
+================================ */
+
+.cinema-hero {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  margin: 3rem 0 4rem;
+  border-radius: 32px;
+  overflow: hidden;
+}
+
+.cinema-media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Dark overlay so text is readable */
+.cinema-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.65),
+    rgba(0,0,0,0.2)
+  );
+}
+
+/* Text on top of image */
+.cinema-overlay {
+  position: absolute;
+  bottom: 3rem;
+  left: 3rem;
+  z-index: 2;
+  color: white;
+  max-width: 480px;
+}
+
+.cinema-overlay h1 {
+  font-size: 2.4rem;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.cinema-overlay p {
+  margin-top: 0.6rem;
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+/* Results section */
+.results {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Back link */
+.back-link {
+  display: inline-block;
+  margin-top: 2.5rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+/* ===============================
+   RHODE-STYLE MOVIE CAROUSEL
+================================ */
+
+.carousel {
+  position: relative;
+  max-width: 1100px;
+  margin: 3rem auto 4rem;
+}
+
+/* One slide = two equal boxes */
+.slide {
+  display: none;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: stretch;
+}
+
+.slide.active {
+  display: grid;
+}
+
+/* Shared card styling */
+.card-box {
+  background: #ffffff;
+  border-radius: 28px;
+  padding: 2rem;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* LEFT: image box */
+.slide-image {
+  display: flex;
+}
+
+.slide-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+/* RIGHT: text box */
+.slide-info {
+  justify-content: center;
+}
+
+.slide-info h2 {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.slide-info .genres {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 0.4rem;
+}
+
+.slide-info .desc {
+  margin-top: 1.6rem;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  max-width: 420px;
+}
+
+/* ===============================
+   NAVIGATION ARROWS
+================================ */
+
+.nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+
+  background: rgba(255,255,255,0.95);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.2);
+
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 10;
+}
+
+.nav.prev {
+  left: 16px;
+}
+
+.nav.next {
+  right: 16px;
+}
+
+.nav:hover {
+  transform: translateY(-50%) scale(1.05);
+}
+
+/* Back link alignment */
+.back-link {
+  display: block;
+  margin: 3rem auto 0;
+  text-align: center;
+}
+
+/* ===============================
+   MINI HEADER VIDEO (MAIN PAGE)
+================================ */
+
+.mini-video {
+  width: 100%;
+  height: 180px;          /* SMALL + ELEGANT */
+  overflow: hidden;
+  border-radius: 24px;
+  margin-bottom: 2.5rem;
+}
+
+.mini-video video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ===============================
+   FULL VIDEO HERO (RHODE STYLE)
+================================ */
+
+.video-hero {
+  position: relative;
+  width: 100%;
+  height: 80vh;          /* 👈 bigger */
+  min-height: 520px; 
+  margin-top: 0;        /* 👈 important */
+   /* 👈 ensures impact on large screens */
+  margin-bottom: 4.5rem;
+
+  border-radius: 32px;
+  overflow: hidden;
+}
+
+
+/* Video itself */
+.video-hero video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Dark gradient overlay */
+.video-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.15),
+    rgba(0,0,0,0.65)
+  );
+}
+
+/* Text overlay */
+.video-overlay {
+  position: absolute;
+  bottom: 3rem;
+  left: 3rem;
+  z-index: 2;
+  color: white;
+  max-width: 520px;
+}
+
+.video-overlay h1 {
+  font-size: 2.4rem;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.video-overlay p {
+  margin-top: 0.8rem;
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+/* Button */
+.hero-button {
+  display: inline-block;
+  margin-top: 1.4rem;
+  padding: 0.65rem 1.4rem;
+
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.6);
+
+  color: white;
+  font-size: 0.85rem;
+  text-decoration: none;
+
+  backdrop-filter: blur(4px);
+}
+/* ===============================
+   BRAND MARK (RHODE-INSPIRED)
+================================ */
+
+.brand-mark {
+  margin-top: 4rem;
+  text-align: center;
+
+  font-family: "Inter Tight", Inter, sans-serif;
+  font-size: 4.5rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+
+  color: #6f6a63; /* soft taupe like rhode */
+}
+
+
+
+
+
+

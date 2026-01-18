@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<section class="carousel">
+
+  {% for i in items %}
+  <div class="slide {% if loop.first %}active{% endif %}">
+
+    <!-- LEFT CARD: POSTER -->
+    <div class="slide-image card-box">
+      <img
+        src="{{ url_for('static', filename='posters/' ~ i.movieId ~ '.jpg') }}"
+        onerror="this.onerror=null;this.src='{{ url_for('static', filename='posters/fallback.jpg') }}';"
+        alt="{{ i.title }}"
+      >
+    </div>
+
+    <!-- RIGHT CARD: DETAILS -->
+    <div class="slide-info card-box">
+      <h2>{{ i.title }}</h2>
+
+      {% if i.genres is defined %}
+        <p class="genres">{{ i.genres }}</p>
+      {% endif %}
+
+      <p class="desc">
+        Recommendation based on shared tone,
+        mood, and viewing patterns.
+      </p>
+    </div>
+
+  </div>
+  {% endfor %}
+
+  <!-- NAVIGATION -->
+  <button class="nav prev" onclick="prevSlide()">←</button>
+  <button class="nav next" onclick="nextSlide()">→</button>
+
+</section>
+
+<a class="back-link" href="{{ url_for('index') }}">← Back</a>
+
+<script>
+  let current = 0;
+  const slides = document.querySelectorAll(".slide");
+
+  function showSlide(index) {
+    slides.forEach((s, i) => {
+      s.classList.toggle("active", i === index);
+    });
+  }
+
+  function nextSlide() {
+    current = (current + 1) % slides.length;
+    showSlide(current);
+  }
+
+  function prevSlide() {
+    current = (current - 1 + slides.length) % slides.length;
+    showSlide(current);
+  }
+</script>
+
+{% endblock %}

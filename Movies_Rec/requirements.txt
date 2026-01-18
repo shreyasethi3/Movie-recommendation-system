@@ -1,0 +1,5 @@
+Flask>=3.0
+pandas>=2.0
+scikit-learn>=1.2
+# Optional: uncomment if you want the neural model
+# tensorflow>=2.14
